@@ -20,9 +20,10 @@ abbr -a kr 'keybase chat read'
 abbr -a kl 'keybase chat list'
 abbr -a pr 'gh pr create -t (git show -s --format=%s HEAD) -b (git show -s --format=%B HEAD | tail -n+3)'
 
-# for pulsestudio
-export HOST_IP=(ip route |awk '/^default/{print $3}')
-export PULSE_SERVER="tcp:$HOST_IP"
+set -l os (uname)
+if test "$os" = Darwin
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+end
 
 if status is-interactive
 	# Commands to run in interactive sessions can go here
@@ -31,42 +32,29 @@ if status is-interactive
 	end
 end
 
+# fzf
+set -g FZF_CTRL_T_COMMAND "command find -L \$dir -type f 2> /dev/null | sed '1d; s#^\./##'"
+fzf --fish | source
+
+# enable vi keybinding
 fish_vi_key_bindings
 
 # path
-fish_add_path -g /home/msalah/.cargo/bin
-fish_add_path -g /home/msalah/go/bin
+fish_add_path -g ~/.cargo/bin
+fish_add_path -g ~/go/bin
 fish_add_path -g /usr/local/go/bin
-fish_add_path -g /home/msalah/.local/bin
+fish_add_path -g ~/.local/bin
+fish_add_path -g /usr/local/bin/
 
 # alias
 alias v=nvim
 alias ll="exa -lh"
 # alias pomo="porsmo"
 alias lg="lazygit"
-
-function fish_prompt
-
-
-	set_color brblack
-	echo -n "["(date "+%H:%M")"] "
-	set_color blue
-	echo -n (hostnamectl hostname)
-	if [ $PWD != $HOME ]
-
-		set_color brblack
-		echo -n ':'
-		set_color yellow
-		echo -n (basename $PWD)
-
-	end
-	set_color green
-	printf '%s ' (__fish_git_prompt)
-	set_color red
-
-	echo -n 'Λ '
-	set_color normal
-end
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../../"
+alias .....="cd ../../../../"
 
 function fish_greeting
 	echo -e "              ▄ ▄                   "
@@ -81,5 +69,7 @@ function fish_greeting
 	echo
 	set_color normal
 end
+
 starship init fish | source
 zoxide init fish | source
+
