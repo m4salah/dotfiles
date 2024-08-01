@@ -7,10 +7,16 @@ end
 local mux = wezterm.mux
 local act = wezterm.action
 
+local is_darwin = function()
+	return wezterm.target_triple:find("darwin") ~= nil
+end
+
 config.color_scheme = "Catppuccin Mocha"
 config.font = wezterm.font("JetBrainsMono Nerd Font")
 
-config.default_domain = "WSL:Ubuntu"
+if not is_darwin() then
+	config.default_domain = "WSL:Ubuntu"
+end
 
 config.window_decorations = "NONE"
 config.hide_tab_bar_if_only_one_tab = true
