@@ -18,7 +18,7 @@ abbr -a ks 'keybase chat send'
 abbr -a kr 'keybase chat read'
 
 abbr -a kl 'keybase chat list'
-abbr -a pr 'gh pr create -t (git show -s --format=%s HEAD) -b (git show -s --format=%B HEAD | tail -n+3)'
+abbr -a pr 'gh pr create -t (git rev-parse --abbrev-ref HEAD) --base {} -T pull_request_template.md'
 
 set -l os (uname)
 if test "$os" = Darwin
