@@ -32,6 +32,9 @@ if status is-interactive
 	end
 end
 
+# set ediro to nvim
+set -Ux EDITOR nvim
+
 # fzf
 set -g FZF_CTRL_T_COMMAND "command find -L \$dir -type f 2> /dev/null | sed '1d; s#^\./##'"
 fzf --fish | source
@@ -48,8 +51,7 @@ fish_add_path -g /usr/local/bin/
 
 # alias
 alias v=nvim
-alias ll="exa -lh"
-# alias pomo="porsmo"
+alias ls="eza --icons=always"
 alias lg="lazygit"
 alias ..="cd .."
 alias ...="cd ../.."
@@ -71,5 +73,7 @@ function fish_greeting
 end
 
 starship init fish | source
+
+# zoxide 
 zoxide init fish | source
 

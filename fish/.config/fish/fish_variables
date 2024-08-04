@@ -1,5 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export EDITOR:nvim
 SETUVAR __fish_initialized:3400
 SETUVAR _fish_abbr_ais:aws\x20ec2\x20describe\x2dinstances\x20\x7c\x20jq\x20\x27\x2eReservations\x5b\x5d\x20\x7c\x20\x2eInstances\x5b\x5d\x20\x7c\x20\x7biid\x3a\x20\x2eInstanceId\x2c\x20type\x3a\x20\x2eInstanceType\x2c\x20key\x3a\x2eKeyName\x2c\x20state\x3a\x2eState\x2eName\x2c\x20host\x3a\x2ePublicDnsName\x7d\x27
 SETUVAR _fish_abbr_amz:env\x20AWS_SECRET_ACCESS_KEY\x3d\x28pass\x20www/aws\x2dsecret\x2dkey\x20\x7c\x20head\x20\x2dn1\x29
