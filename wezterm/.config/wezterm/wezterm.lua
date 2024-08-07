@@ -18,7 +18,7 @@ if not is_darwin() then
 	config.default_domain = "WSL:Ubuntu"
 end
 
-config.window_decorations = "NONE"
+config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = true
 
 config.window_padding = {
@@ -36,5 +36,6 @@ end)
 
 config.keys = {
 	{ key = "v", mods = "ALT", action = act.PasteFrom("Clipboard") },
+	{ key = "f", mods = "ALT|CMD", action = wezterm.action.ToggleFullScreen },
 }
 return config
