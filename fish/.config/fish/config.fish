@@ -10,6 +10,8 @@ abbr -a vimdiff 'nvim -d'
 abbr -a gah 'git stash; and git pull --rebase; and git stash pop'
 abbr -a pr 'gh pr create -t (git rev-parse --abbrev-ref HEAD) -T pull_request_template.md -a ZiadKenzz -a ahmedgaber9 -a abdullah-alrefaey-k -a esmail-kenzz -a Abd3lwahab -r ZiadKenzz -r ahmedgaber9 -r abdullah-alrefaey-k -r esmail-kenzz -r Abd3lwahab --base main'
 
+abbr -a oc opencode
+
 set -l os (uname)
 if test "$os" = Darwin
 	eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -117,3 +119,6 @@ fish_add_path /Users/mohamed-kenzz/.opencode/bin
 
 # Added by Antigravity
 fish_add_path /Users/mohamed-kenzz/.antigravity/antigravity/bin
+
+# Amp CLI
+export PATH="/Users/mohamed-kenzz/.amp/bin:$PATH"
