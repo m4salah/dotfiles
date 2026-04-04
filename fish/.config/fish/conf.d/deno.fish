@@ -1,0 +1,1 @@
+source "/home/msalah/.deno/env.fish"

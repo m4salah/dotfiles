@@ -77,3 +77,17 @@ starship init fish | source
 # zoxide 
 zoxide init fish | source
 
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
+
+jj util completion fish | source
+
+# ZVM
+set -gx ZVM_INSTALL "$HOME/.zvm/self"
+set -gx PATH $PATH "$HOME/.zvm/bin"
+set -gx PATH $PATH "$ZVM_INSTALL/"
+
+# opencode
+fish_add_path /home/msalah/.opencode/bin
