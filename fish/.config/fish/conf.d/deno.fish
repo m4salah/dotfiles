@@ -1,1 +1,1 @@
-source "/home/msalah/.deno/env.fish"
+source "~/.deno/env.fish"

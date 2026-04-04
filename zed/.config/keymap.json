@@ -1,0 +1,104 @@
+[
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      "j j": "vim::NormalBefore"
+    }
+  },
+  {
+    // Vim: File Tree ("ProjectPanel") actions
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "h": "project_panel::CollapseSelectedEntry",
+      "l": "project_panel::ExpandSelectedEntry",
+      "j": "editor::SelectDown",
+      "k": "editor::SelectUp",
+      "o": "menu::Confirm",
+      "r": "project_panel::Rename",
+      "x": "project_panel::Cut",
+      "c": "project_panel::Copy",
+      "p": "project_panel::Paste",
+      "d": "project_panel::Delete",
+      "a": "project_panel::NewFile",
+      "y": "workspace::CopyRelativePath",
+      "g y": "workspace::CopyPath"
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "J": "editor::MoveLineDown",
+      "K": "editor::MoveLineUp",
+      "L": "vim::EndOfLine",
+      "H": "vim::StartOfLine"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "g h": "editor::Hover",
+      ", w": "workspace::Save",
+      ", s f": "file_finder::Toggle",
+      ", s b": "tab_switcher::Toggle",
+      ", s s": "outline::Toggle",
+      ", s g": "pane::DeploySearch",
+      ", s d": "diagnostics::Deploy",
+      ", c a": "editor::ToggleCodeActions",
+      ", r n": "editor::Rename",
+      ", v": "pane::SplitRight",
+      "g c c": "vim::ToggleComments",
+      "g r": "editor::FindAllReferences",
+      "g d": "editor::GoToDefinition",
+      "ctrl-n": "workspace::ToggleLeftDock",
+      "L": "vim::EndOfLine",
+      "H": "vim::StartOfLine",
+      ", g g": "git::Diff",
+      ", g r": "git::Restore",
+      ", g R": "git::RestoreFile",
+      ", g p": "editor::ToggleSelectedDiffHunks",
+      ", g B": "editor::OpenPermalinkToLine",
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPreviousHunk",
+      "] c": "vim::NextComment",
+      "[ c": "vim::Comment",
+      "[ b": "pane::ActivatePreviousItem",
+      "] b": "pane::ActivateNextItem",
+      ", x": "pane::CloseActiveItem",
+      ", ,": ["workspace::SendKeystrokes", "ctrl-tab enter"]
+    }
+  },
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "ctrl-y": "editor::ConfirmCompletion"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "ctrl-n": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight"
+    }
+  },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "c": "git::ExpandCommitEditor",
+      "p": "git::Pull",
+      "P": "git::Push",
+      "a": "git::StageAll"
+    }
+  }
+]
