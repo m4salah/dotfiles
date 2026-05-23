@@ -1,6 +1,6 @@
 # Print an optspec for argparse to handle cmd's options that are independent of any subcommand.
 function __fish_deno_global_optspecs
-	string join \n no-check= import-map= no-remote no-npm node-modules-dir= vendor= c/config= no-config r/reload= lock= no-lock cert= unsafely-ignore-certificate-errors= A/allow-all R/allow-read= deny-read= W/allow-write= deny-write= N/allow-net= deny-net= E/allow-env= deny-env= S/allow-sys= deny-sys= allow-run= deny-run= allow-ffi= deny-ffi= allow-hrtime deny-hrtime no-prompt I/allow-import= inspect= inspect-brk= inspect-wait= allow-scripts= frozen= cached-only location= v8-flags= seed= enable-testing-features-do-not-use strace-ops= check= watch= watch-hmr= watch-exclude= no-clear-screen ext= env-file= no-code-cache unstable unstable-bare-node-builtins unstable-detect-cjs unstable-byonm unstable-sloppy-imports unstable-npm-lazy-caching unstable-broadcast-channel unstable-cron unstable-ffi unstable-fs unstable-http unstable-kv unstable-net unstable-node-globals unstable-otel unstable-process unstable-temporal unstable-unsafe-proto unstable-webgpu unstable-worker-options h/help= V/version L/log-level= q/quiet
+	string join \n no-check= import-map= no-remote no-npm node-modules-dir= vendor= c/config= no-config r/reload= lock= no-lock cert= unsafely-ignore-certificate-errors= A/allow-all R/allow-read= deny-read= W/allow-write= deny-write= N/allow-net= deny-net= E/allow-env= deny-env= S/allow-sys= deny-sys= allow-run= deny-run= allow-ffi= deny-ffi= allow-hrtime deny-hrtime no-prompt I/allow-import= inspect= inspect-brk= inspect-wait= allow-scripts= frozen= cached-only location= v8-flags= seed= enable-testing-features-do-not-use strace-ops= check= watch= watch-hmr= watch-exclude= no-clear-screen ext= env-file= no-code-cache unstable unstable-bare-node-builtins unstable-detect-cjs unstable-byonm unstable-sloppy-imports unstable-broadcast-channel unstable-cron unstable-ffi unstable-fs unstable-http unstable-kv unstable-net unstable-node-globals unstable-otel unstable-process unstable-temporal unstable-unsafe-proto unstable-webgpu unstable-worker-options h/help= V/version L/log-level= q/quiet
 end
 
 function __fish_deno_needs_command
@@ -82,7 +82,6 @@ complete -c deno -n "__fish_deno_needs_command" -l unstable-bare-node-builtins -
 complete -c deno -n "__fish_deno_needs_command" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_needs_command" -l unstable-byonm
 complete -c deno -n "__fish_deno_needs_command" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_needs_command" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_needs_command" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_needs_command" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_needs_command" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -121,7 +120,7 @@ complete -c deno -n "__fish_deno_needs_command" -a "i" -d 'Installs dependencies
 complete -c deno -n "__fish_deno_needs_command" -a "json_reference"
 complete -c deno -n "__fish_deno_needs_command" -a "jupyter" -d 'Deno kernel for Jupyter notebooks'
 complete -c deno -n "__fish_deno_needs_command" -a "uninstall" -d 'Uninstalls a dependency or an executable script in the installation root\'s bin directory.   deno uninstall @std/dotenv chalk   deno uninstall --global file_server  To change the installation root, use --root flag:   deno uninstall --global --root /usr/local serve  The installation root is determined, in order of precedence:   - --root option   - DENO_INSTALL_ROOT environment variable   - $HOME/.deno'
-complete -c deno -n "__fish_deno_needs_command" -a "outdated" -d 'Find and update outdated dependencies. By default, outdated dependencies are only displayed.  Display outdated dependencies:   deno outdated   deno outdated --compatible  Update dependencies to latest semver compatible versions:   deno outdated --update Update dependencies to latest versions, ignoring semver requirements:   deno outdated --update --latest  Filters can be used to select which packages to act on. Filters can include wildcards (*) to match multiple packages.   deno outdated --update --latest "@std/*"   deno outdated --update --latest "react*" Note that filters act on their aliases configured in deno.json / package.json, not the actual package names:   Given "foobar": "npm:react@17.0.0" in deno.json or package.json, the filter "foobar" would update npm:react to   the latest version.   deno outdated --update --latest foobar Filters can be combined, and negative filters can be used to exclude results:   deno outdated --update --latest "@std/*" "!@std/fmt*"  Specific version requirements to update to can be specified:   deno outdated --update @std/fmt@^1.0.2 '
+complete -c deno -n "__fish_deno_needs_command" -a "outdated" -d 'Find and update outdated dependencies. By default, outdated dependencies are only displayed.  Display outdated dependencies:   deno outdated   deno outdated --compatible  Update dependencies:   deno outdated --update   deno outdated --update --latest   deno outdated --update  Filters can be used to select which packages to act on. Filters can include wildcards (*) to match multiple packages.   deno outdated --update --latest "@std/*"   deno outdated --update --latest "react*" Note that filters act on their aliases configured in deno.json / package.json, not the actual package names:   Given "foobar": "npm:react@17.0.0" in deno.json or package.json, the filter "foobar" would update npm:react to   the latest version.   deno outdated --update --latest foobar Filters can be combined, and negative filters can be used to exclude results:   deno outdated --update --latest "@std/*" "!@std/fmt*"  Specific version requirements to update to can be specified:   deno outdated --update @std/fmt@^1.0.2 '
 complete -c deno -n "__fish_deno_needs_command" -a "lsp" -d 'The \'deno lsp\' subcommand provides a way for code editors and IDEs to interact with Deno using the Language Server Protocol. Usually humans do not use this subcommand directly. For example, \'deno lsp\' can provide IDEs with go-to-definition support and automatic code formatting.  How to connect various editors and IDEs to \'deno lsp\': https://docs.deno.com/go/lsp'
 complete -c deno -n "__fish_deno_needs_command" -a "lint" -d 'Lint JavaScript/TypeScript source code.    deno lint   deno lint myfile1.ts myfile2.js  Print result as JSON:   deno lint --json  Read from stdin:   cat file.ts | deno lint -   cat file.ts | deno lint --json -  List available rules:   deno lint --rules  To ignore specific diagnostics, you can write an ignore comment on the preceding line with a rule name (or multiple):   // deno-lint-ignore no-explicit-any   // deno-lint-ignore require-await no-empty  To ignore linting on an entire file, you can add an ignore comment at the top of the file:   // deno-lint-ignore-file  Read more: https://docs.deno.com/go/lint '
 complete -c deno -n "__fish_deno_needs_command" -a "publish" -d 'Publish the current working directory\'s package or workspace to JSR'
@@ -178,7 +177,6 @@ complete -c deno -n "__fish_deno_using_subcommand run" -l unstable-bare-node-bui
 complete -c deno -n "__fish_deno_using_subcommand run" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand run" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand run" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand run" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand run" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand run" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand run" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -254,7 +252,6 @@ complete -c deno -n "__fish_deno_using_subcommand serve" -l unstable-bare-node-b
 complete -c deno -n "__fish_deno_using_subcommand serve" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand serve" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand serve" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand serve" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand serve" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand serve" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand serve" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -291,7 +288,6 @@ complete -c deno -n "__fish_deno_using_subcommand add" -l unstable-bare-node-bui
 complete -c deno -n "__fish_deno_using_subcommand add" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand add" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand add" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand add" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand add" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand add" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand add" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -315,7 +311,6 @@ complete -c deno -n "__fish_deno_using_subcommand remove" -l unstable-bare-node-
 complete -c deno -n "__fish_deno_using_subcommand remove" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand remove" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand remove" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand remove" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand remove" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand remove" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand remove" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -374,7 +369,6 @@ complete -c deno -n "__fish_deno_using_subcommand bench" -l unstable-bare-node-b
 complete -c deno -n "__fish_deno_using_subcommand bench" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand bench" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand bench" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand bench" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand bench" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand bench" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand bench" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -411,7 +405,6 @@ complete -c deno -n "__fish_deno_using_subcommand bundle" -l unstable-bare-node-
 complete -c deno -n "__fish_deno_using_subcommand bundle" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand bundle" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand bundle" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand bundle" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand bundle" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand bundle" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand bundle" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -447,7 +440,6 @@ complete -c deno -n "__fish_deno_using_subcommand cache" -l unstable-bare-node-b
 complete -c deno -n "__fish_deno_using_subcommand cache" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand cache" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand cache" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand cache" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand cache" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand cache" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand cache" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -484,7 +476,6 @@ complete -c deno -n "__fish_deno_using_subcommand check" -l unstable-bare-node-b
 complete -c deno -n "__fish_deno_using_subcommand check" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand check" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand check" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand check" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand check" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand check" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand check" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -515,7 +506,6 @@ complete -c deno -n "__fish_deno_using_subcommand clean" -l unstable-bare-node-b
 complete -c deno -n "__fish_deno_using_subcommand clean" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand clean" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand clean" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand clean" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand clean" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand clean" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand clean" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -575,7 +565,6 @@ complete -c deno -n "__fish_deno_using_subcommand compile" -l unstable-bare-node
 complete -c deno -n "__fish_deno_using_subcommand compile" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand compile" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand compile" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand compile" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand compile" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand compile" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand compile" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -610,7 +599,6 @@ complete -c deno -n "__fish_deno_using_subcommand completions" -l unstable-bare-
 complete -c deno -n "__fish_deno_using_subcommand completions" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand completions" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand completions" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand completions" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand completions" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand completions" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand completions" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -637,7 +625,6 @@ complete -c deno -n "__fish_deno_using_subcommand coverage" -l unstable-bare-nod
 complete -c deno -n "__fish_deno_using_subcommand coverage" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand coverage" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand coverage" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand coverage" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand coverage" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand coverage" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand coverage" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -673,7 +660,6 @@ complete -c deno -n "__fish_deno_using_subcommand doc" -l unstable-bare-node-bui
 complete -c deno -n "__fish_deno_using_subcommand doc" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand doc" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand doc" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand doc" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand doc" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand doc" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand doc" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -725,7 +711,6 @@ complete -c deno -n "__fish_deno_using_subcommand eval" -l unstable-bare-node-bu
 complete -c deno -n "__fish_deno_using_subcommand eval" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand eval" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand eval" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand eval" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand eval" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand eval" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand eval" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -765,7 +750,6 @@ complete -c deno -n "__fish_deno_using_subcommand fmt" -l unstable-bare-node-bui
 complete -c deno -n "__fish_deno_using_subcommand fmt" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand fmt" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand fmt" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand fmt" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand fmt" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand fmt" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand fmt" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -797,7 +781,6 @@ complete -c deno -n "__fish_deno_using_subcommand init" -l unstable-bare-node-bu
 complete -c deno -n "__fish_deno_using_subcommand init" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand init" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand init" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand init" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand init" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand init" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand init" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -834,7 +817,6 @@ complete -c deno -n "__fish_deno_using_subcommand info" -l unstable-bare-node-bu
 complete -c deno -n "__fish_deno_using_subcommand info" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand info" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand info" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand info" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand info" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand info" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand info" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -899,7 +881,6 @@ complete -c deno -n "__fish_deno_using_subcommand install" -l unstable-bare-node
 complete -c deno -n "__fish_deno_using_subcommand install" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand install" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand install" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand install" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand install" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand install" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand install" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -973,7 +954,6 @@ complete -c deno -n "__fish_deno_using_subcommand i" -l unstable-bare-node-built
 complete -c deno -n "__fish_deno_using_subcommand i" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand i" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand i" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand i" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand i" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand i" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand i" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -1014,7 +994,6 @@ complete -c deno -n "__fish_deno_using_subcommand jupyter" -l unstable-bare-node
 complete -c deno -n "__fish_deno_using_subcommand jupyter" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand jupyter" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand jupyter" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand jupyter" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand jupyter" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand jupyter" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand jupyter" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -1040,7 +1019,6 @@ complete -c deno -n "__fish_deno_using_subcommand uninstall" -l unstable-bare-no
 complete -c deno -n "__fish_deno_using_subcommand uninstall" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand uninstall" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand uninstall" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand uninstall" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand uninstall" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand uninstall" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand uninstall" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -1065,7 +1043,6 @@ complete -c deno -n "__fish_deno_using_subcommand outdated" -l unstable-bare-nod
 complete -c deno -n "__fish_deno_using_subcommand outdated" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand outdated" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand outdated" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand outdated" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand outdated" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand outdated" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand outdated" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -1098,13 +1075,11 @@ complete -c deno -n "__fish_deno_using_subcommand lint" -l rules-exclude -d 'Exc
 complete -c deno -n "__fish_deno_using_subcommand lint" -s c -l config -d 'Configure different aspects of deno including TypeScript, linting, and code formatting   Typically the configuration file will be called `deno.json` or `deno.jsonc` and   automatically detected; in that case this flag is not necessary.   Docs: https://docs.deno.com/go/config' -r -F
 complete -c deno -n "__fish_deno_using_subcommand lint" -l ignore -d 'Ignore linting particular source files' -r -F
 complete -c deno -n "__fish_deno_using_subcommand lint" -l watch-exclude -d 'Exclude provided files/patterns from watch mode' -r -F
-complete -c deno -n "__fish_deno_using_subcommand lint" -s I -l allow-import -d 'Allow importing from remote hosts. Optionally specify allowed IP addresses and host names, with ports as necessary. Default value: deno.land:443,jsr.io:443,esm.sh:443,cdn.jsdelivr.net:443,raw.githubusercontent.com:443,user.githubusercontent.com:443' -r
 complete -c deno -n "__fish_deno_using_subcommand lint" -l unstable -d 'Enable all unstable features and APIs. Instead of using this flag, consider enabling individual unstable features   To view the list of individual unstable feature flags, run this command again with --help=unstable'
 complete -c deno -n "__fish_deno_using_subcommand lint" -l unstable-bare-node-builtins -d 'Enable unstable bare node builtins feature'
 complete -c deno -n "__fish_deno_using_subcommand lint" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand lint" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand lint" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand lint" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand lint" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand lint" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand lint" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -1139,7 +1114,6 @@ complete -c deno -n "__fish_deno_using_subcommand publish" -l unstable-bare-node
 complete -c deno -n "__fish_deno_using_subcommand publish" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand publish" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand publish" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand publish" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand publish" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand publish" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand publish" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -1201,7 +1175,6 @@ complete -c deno -n "__fish_deno_using_subcommand repl" -l unstable-bare-node-bu
 complete -c deno -n "__fish_deno_using_subcommand repl" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand repl" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand repl" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand repl" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand repl" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand repl" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand repl" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -1238,7 +1211,6 @@ complete -c deno -n "__fish_deno_using_subcommand task" -l unstable-bare-node-bu
 complete -c deno -n "__fish_deno_using_subcommand task" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand task" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand task" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand task" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand task" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand task" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand task" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -1308,7 +1280,6 @@ complete -c deno -n "__fish_deno_using_subcommand test" -l unstable-bare-node-bu
 complete -c deno -n "__fish_deno_using_subcommand test" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand test" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand test" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand test" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand test" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand test" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand test" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -1349,7 +1320,6 @@ complete -c deno -n "__fish_deno_using_subcommand types" -l unstable-bare-node-b
 complete -c deno -n "__fish_deno_using_subcommand types" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand types" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand types" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand types" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand types" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand types" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand types" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -1376,7 +1346,6 @@ complete -c deno -n "__fish_deno_using_subcommand upgrade" -l unstable-bare-node
 complete -c deno -n "__fish_deno_using_subcommand upgrade" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand upgrade" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand upgrade" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand upgrade" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand upgrade" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand upgrade" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand upgrade" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -1403,7 +1372,6 @@ complete -c deno -n "__fish_deno_using_subcommand vendor" -l unstable-bare-node-
 complete -c deno -n "__fish_deno_using_subcommand vendor" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand vendor" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand vendor" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand vendor" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand vendor" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand vendor" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand vendor" -l unstable-ffi -d 'Enable unstable FFI APIs'
@@ -1426,7 +1394,6 @@ complete -c deno -n "__fish_deno_using_subcommand help; and not __fish_seen_subc
 complete -c deno -n "__fish_deno_using_subcommand help; and not __fish_seen_subcommand_from run serve add remove bench bundle cache check clean compile completions coverage doc eval fmt init info install json_reference jupyter uninstall outdated lsp lint publish repl task test types upgrade vendor" -l unstable-detect-cjs -d 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases'
 complete -c deno -n "__fish_deno_using_subcommand help; and not __fish_seen_subcommand_from run serve add remove bench bundle cache check clean compile completions coverage doc eval fmt init info install json_reference jupyter uninstall outdated lsp lint publish repl task test types upgrade vendor" -l unstable-byonm
 complete -c deno -n "__fish_deno_using_subcommand help; and not __fish_seen_subcommand_from run serve add remove bench bundle cache check clean compile completions coverage doc eval fmt init info install json_reference jupyter uninstall outdated lsp lint publish repl task test types upgrade vendor" -l unstable-sloppy-imports -d 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing'
-complete -c deno -n "__fish_deno_using_subcommand help; and not __fish_seen_subcommand_from run serve add remove bench bundle cache check clean compile completions coverage doc eval fmt init info install json_reference jupyter uninstall outdated lsp lint publish repl task test types upgrade vendor" -l unstable-npm-lazy-caching -d 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed'
 complete -c deno -n "__fish_deno_using_subcommand help; and not __fish_seen_subcommand_from run serve add remove bench bundle cache check clean compile completions coverage doc eval fmt init info install json_reference jupyter uninstall outdated lsp lint publish repl task test types upgrade vendor" -l unstable-broadcast-channel -d 'Enable unstable `BroadcastChannel` API'
 complete -c deno -n "__fish_deno_using_subcommand help; and not __fish_seen_subcommand_from run serve add remove bench bundle cache check clean compile completions coverage doc eval fmt init info install json_reference jupyter uninstall outdated lsp lint publish repl task test types upgrade vendor" -l unstable-cron -d 'Enable unstable Deno.cron API'
 complete -c deno -n "__fish_deno_using_subcommand help; and not __fish_seen_subcommand_from run serve add remove bench bundle cache check clean compile completions coverage doc eval fmt init info install json_reference jupyter uninstall outdated lsp lint publish repl task test types upgrade vendor" -l unstable-ffi -d 'Enable unstable FFI APIs'
