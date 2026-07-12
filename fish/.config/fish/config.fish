@@ -1,36 +1,29 @@
 abbr -a yr 'cal -y'
-abbr -a c cargo
 abbr -a e nvim
 abbr -a m make
-abbr -a o xdg-open
+abbr -a o open
 
 abbr -a g git
 
-abbr -a gc 'git checkout'
 abbr -a ga 'git add -p'
 abbr -a vimdiff 'nvim -d'
-abbr -a ct 'cargo t'
-abbr -a amz 'env AWS_SECRET_ACCESS_KEY=(pass www/aws-secret-key | head -n1)'
 
-abbr -a ais "aws ec2 describe-instances | jq '.Reservations[] | .Instances[] | {iid: .InstanceId, type: .InstanceType, key:.KeyName, state:.State.Name, host:.PublicDnsName}'"
 abbr -a gah 'git stash; and git pull --rebase; and git stash pop'
-abbr -a ks 'keybase chat send'
-abbr -a kr 'keybase chat read'
+abbr -a pr 'gh pr create -t (git rev-parse --abbrev-ref HEAD) --base main'
 
-abbr -a kl 'keybase chat list'
-abbr -a pr 'gh pr create -t (git rev-parse --abbrev-ref HEAD) --base {} -T pull_request_template.md'
+abbr -a cc 'claude'
 
 set -l os (uname)
 if test "$os" = Darwin
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 end
 
-if status is-interactive
-	# Commands to run in interactive sessions can go here
-    if ! set -q TMUX
-		tmux attach || tmux new
-	end
-end
+# if status is-interactive
+# 	# Commands to run in interactive sessions can go here
+#     if ! set -q TMUX
+# 		tmux attach || tmux new
+# 	end
+# end
 
 # set ediro to nvim
 set -Ux EDITOR nvim
@@ -82,8 +75,6 @@ zoxide init fish | source
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
-jj util completion fish | source
-
 # ZVM
 set -gx ZVM_INSTALL "$HOME/.zvm/self"
 set -gx PATH $PATH "$HOME/.zvm/bin"
@@ -91,3 +82,6 @@ set -gx PATH $PATH "$ZVM_INSTALL/"
 
 # opencode
 fish_add_path /home/msalah/.opencode/bin
+
+# Added by GitButler installer
+but completions fish | source
