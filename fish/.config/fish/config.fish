@@ -83,5 +83,3 @@ set -gx PATH $PATH "$ZVM_INSTALL/"
 # opencode
 fish_add_path /home/msalah/.opencode/bin
 
-# Added by GitButler installer
-but completions fish | source
