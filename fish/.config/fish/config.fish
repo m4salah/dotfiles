@@ -41,6 +41,10 @@ fish_add_path -g /usr/local/go/bin
 fish_add_path -g ~/.local/bin
 fish_add_path -g /usr/local/bin/
 
+set -gx ANDROID_HOME $HOME/Library/Android/sdk
+set -gx PATH $PATH $ANDROID_HOME/emulator
+set -gx PATH $PATH $ANDROID_HOME/platform-tools
+
 # alias
 alias v=nvim
 alias ls="eza --icons=always"
@@ -81,3 +85,9 @@ set -gx PATH $PATH "$ZVM_INSTALL/"
 
 # opencode
 fish_add_path /home/msalah/.opencode/bin
+
+# Pi
+fish_add_path "/Users/mohamed-kenzz/.local/share/mise/installs/node/24.18.1/bin"
+
+# Added by Radicle.
+export PATH="$PATH:/Users/mohamed-kenzz/.radicle/bin"
