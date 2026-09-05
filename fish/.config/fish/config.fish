@@ -30,7 +30,6 @@ set -Ux EDITOR nvim
 
 # fzf
 set -g FZF_CTRL_T_COMMAND "command find -L \$dir -type f 2> /dev/null | sed '1d; s#^\./##'"
-fzf --fish | source
 
 # enable vi keybinding
 fish_vi_key_bindings
@@ -82,4 +81,3 @@ set -gx PATH $PATH "$ZVM_INSTALL/"
 
 # opencode
 fish_add_path /home/msalah/.opencode/bin
-

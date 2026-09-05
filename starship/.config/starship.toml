@@ -14,3 +14,13 @@ disabled = true
 
 [gcloud]
 disabled = true
+
+# Avoid running language version probes while rendering every prompt.
+[python]
+disabled = true
+
+[ruby]
+disabled = true
+
+[bun]
+disabled = true
